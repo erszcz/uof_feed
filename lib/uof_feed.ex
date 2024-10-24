@@ -54,7 +54,8 @@ defmodule UofFeed do
     {:ok, chan, q} = connect()
     handler = fn xml, _meta ->
       map = xml |> xml_to_elixir()
-      IO.inspect(map, label: :received, limit: :infinity)
+      IO.inspect(xml, label: "Received XML", limit: :infinity)
+      IO.inspect(map, label: "Converted to internal terms", limit: :infinity)
     end
     {:ok, _} = AMQP.Queue.subscribe(chan, q, handler)
   end
