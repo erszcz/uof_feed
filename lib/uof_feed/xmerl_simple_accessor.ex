@@ -2,8 +2,8 @@ defmodule UofFeed.XmerlSimpleAccessor do
   @behaviour DataSchema.DataAccessBehaviour
 
   @impl true
-  def field({_, attrs, _} = _data, {:attr, attr}) do
-    attrs[attr]
+  def field(element = _data, xpath) do
+    :xmerl_xpath.string(xpath, element)
   end
 
   @impl true
